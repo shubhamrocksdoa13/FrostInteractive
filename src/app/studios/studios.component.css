@@ -1,0 +1,21 @@
+.pointer{
+	cursor: pointer;
+}
+.pointer:hover{
+	text-decoration: underline;
+}
+.search-btn {
+    position: absolute;
+    top: 1vh;
+    right: 4vw;
+}
+.create-btn{
+	position: absolute;
+    top: 1vh;
+    right: 9vw;	
+}
+.update-btn{
+	position: absolute;
+    top: 1vh;
+    right: 15vw;
+}
