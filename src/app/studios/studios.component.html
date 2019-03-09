@@ -1,111 +1,121 @@
 <div>
-	<div class="border-bottom text-center">
-		<h3>STUDIOS</h3>
-		<div class="pointer search-btn" (click)="searchModalShow($event)">Search</div>
-    <div class="pointer create-btn" (click)="createScheduleShow($event)">Create</div>
-    <div class="pointer update-btn" (click)="updateScheduleShow($event)">Update</div>
+  <img class="hero-img" src="../../assets/images/adult-art-artwork-1081685.jpg">
+  <div class="nav-bar col-12">
+    <div><h3 class="color-white">STUDIOS</h3></div>
+    <!-- <div class="pointer color-white" (click)="searchModalShow($event)">Search</div> -->
+    <div class="pointer create-btn color-white p-2" (click)="createScheduleShow($event)">Create Schedule</div>
+    <div class="pointer color-white p-2 pl-5" (click)="updateScheduleShow($event)">Update Schedule</div>
   </div>
-  <div class="col-12">
-    <div class="col-12 row m-0 py-2" *ngFor="let studio of studios; let i=index">
-     <div class="col-1">
-      {{i+1}}
-    </div>
-    <div class="col-11">
-      <strong>{{studio.name}}</strong>
+  <div class="col-12 p-0">
+    <div class="search_div">
+      <button class="search_btn" (click)="searchModalShow($event)">Search Studios</button>
     </div>
   </div>
-</div>
-<!-- Studio Search Modal | By Shubham Anand -->
-<div class="modal fadeM" bsModal #studioSearchModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" style="max-width: 850px; margin-top: 12%;">
-    <div class="modal-content financier-signUp-modal">
-      <div class="modal-header">
-        <h4 class="fw-500 fs-16">Search Studios</h4>
-        <button type="button" class="close pull-right" style="cursor: pointer; outline: 0;" aria-label="Close" (click)="studioSearchModal.hide()">
-          <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
-        </button>
-      </div>
-      <div class="modal-body pt-0 pb-5">
-        <div class="px-2 col-12 text-center py-5">
-          <select class="col-3">
-            <option *ngFor="let studio of searchData.studioName">{{studio.name}}</option>
-          </select>
-          <input type="date" class="mx-3" [(ngModel)]="searchData.localDate">
-          <div class="pt-4">
-            <button (click)="searchSubmit()">Submit</button>
+  <!-- Studio Search Modal | By Shubham Anand -->
+  <div class="modal fadeM" bsModal #studioSearchModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="max-width: 850px; margin-top: 12%;">
+      <div class="modal-content financier-signUp-modal">
+        <div class="modal-header">
+          <h4 class="fw-500 fs-16">Search Studios</h4>
+          <button type="button" class="close pull-right" style="cursor: pointer; outline: 0;" aria-label="Close" (click)="studioSearchModal.hide()">
+            <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
+          </button>
+        </div>
+        <div class="modal-body pt-0 pb-5">
+          <div class="px-2 col-12 text-center py-5">
+            <select class="col-3">
+              <option *ngFor="let studio of searchData.studioName">{{studio.name}}</option>
+            </select>
+            <input type="date" class="mx-3" [(ngModel)]="searchData.localDate">
+            <div class="pt-4">
+              <button (click)="searchSubmit()">Submit</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- End of Modal -->
-<!-- Make Schedule Modal | By Shubham Anand -->
-<div class="modal fadeM" bsModal #makeScheduleModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" style="max-width: 850px; margin-top: 12%;">
-    <div class="modal-content financier-signUp-modal">
-      <div class="modal-header">
-        <h4 class="fw-500 fs-16">Create Schedule</h4>
-        <button type="button" class="close pull-right" style="cursor: pointer; outline: 0;" aria-label="Close" (click)="makeScheduleModal.hide()">
-          <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
-        </button>
-      </div>
-      <div class="modal-body pt-0 pb-5">
-        <div class="px-2 col-12 row m-0 text-center py-5">
-          <div class="col-6">
-            <ngx-select-dropdown (change)="selectStudioName($event)" [config]="StudioDropdownConfig" [multiple]="false" [options]="studioList" >
-          </ngx-select-dropdown>
-          </div>
-          <div class="col-6">
-            <input type="date" class="mx-3 col-12" [(ngModel)]="createData[0].date">
-          </div>
-          <div class="py-3 col-12">
-            <label>Start Time Slot</label>
-            <input type="time" class="mx-3" [(ngModel)]="createData[0].studioScheduleSlotList[0].startTime">
-            <label>End Time Slot</label>
-            <input type="time" class="mx-3" [(ngModel)]="createData[0].studioScheduleSlotList[0].endTime">
-          </div>
-          <div class="pt-4 col-12 text-center">
-            <button (click)="createSubmit()">Submit</button>
+  <!-- End of Modal -->
+  <!-- Make Schedule Modal | By Shubham Anand -->
+  <div class="modal fadeM" bsModal #makeScheduleModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="max-width: 850px; margin-top: 12%;">
+      <div class="modal-content financier-signUp-modal">
+        <div class="modal-header">
+          <h4 class="fw-500 fs-16">Create Schedule</h4>
+          <button type="button" class="close pull-right" style="cursor: pointer; outline: 0;" aria-label="Close" (click)="makeScheduleModal.hide()">
+            <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
+          </button>
+        </div>
+        <div class="modal-body pt-0 pb-5">
+          <div class="px-2 col-12 row m-0 text-center py-5">
+            <div class="col-6">
+              <ngx-select-dropdown (change)="selectStudioName($event)" [config]="StudioDropdownConfig" [multiple]="false" [options]="studioList" >
+              </ngx-select-dropdown>
+            </div>
+            <div class="col-6">
+              <input type="date" class="mx-3 col-12" [(ngModel)]="createData.date">
+            </div>
+            <div class="text-center p-3">
+              <label>How many Time Slots are you looking for?</label><br>
+              <button>-</button>&nbsp;&nbsp;{{timeSlotAmounts.length}}&nbsp;&nbsp;<button (click)="addTImeSlot()">+</button>
+              <button class="ml-5" (click)="timeSlotsBooked()">Go</button>
+            </div>
+            <div *ngIf="showTime" class="col-12 p-0">
+              <div class="py-3 col-6" *ngFor="let timeSlotAmount of timeSlotAmounts; let i = index">
+                <ngx-select-dropdown (change)="selectStartTime($event, i)" [config]="SelectStartTimeConfig" [multiple]="false" [options]="startTime" >
+                </ngx-select-dropdown><br>
+                <ngx-select-dropdown (change)="selectEndTime($event, i)" [config]="SelectEndTimeConfig" [multiple]="false" [options]="endTime" >
+                </ngx-select-dropdown><br>
+              </div>
+            </div>
+            <div class="pt-4 col-12 text-center">
+              <button (click)="createSubmit()">Submit</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- End of Modal -->
-<!-- Update Schedule Modal | By Shubham Anand -->
-<div class="modal fadeM" bsModal #updateScheduleModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" style="max-width: 850px; margin-top: 12%;">
-    <div class="modal-content financier-signUp-modal">
-      <div class="modal-header">
-        <h4 class="fw-500 fs-16">Update Schedule</h4>
-        <button type="button" class="close pull-right" style="cursor: pointer; outline: 0;" aria-label="Close" (click)="updateScheduleModal.hide()">
-          <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
-        </button>
-      </div>
-      <div class="modal-body pt-0 pb-5">
-        <div class="px-2 col-12 row m-0 text-center py-5">
-          <div class="col-6">
-            <ngx-select-dropdown (change)="selectStudioName($event)" [config]="StudioDropdownConfig" [multiple]="false" [options]="studioList" >
-          </ngx-select-dropdown>
-          </div>
-          <div class="col-6">
-            <input type="date" class="mx-3 col-12" [(ngModel)]="createData[0].date">
-          </div>
-          <div class="py-3 col-12">
-            <label>Start Time Slot</label>
-            <input type="time" class="mx-3" [(ngModel)]="createData[0].studioScheduleSlotList[0].startTime">
-            <label>End Time Slot</label>
-            <input type="time" class="mx-3" [(ngModel)]="createData[0].studioScheduleSlotList[0].endTime">
-          </div>
-          <div class="pt-4 col-12 text-center">
-            <button (click)="updateSubmit()">Submit</button>
+  <!-- End of Modal -->
+  <!-- Update Schedule Modal | By Shubham Anand -->
+  <div class="modal fadeM" bsModal #updateScheduleModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="max-width: 850px; margin-top: 12%;">
+      <div class="modal-content financier-signUp-modal">
+        <div class="modal-header">
+          <h4 class="fw-500 fs-16">Update Schedule</h4>
+          <button type="button" class="close pull-right" style="cursor: pointer; outline: 0;" aria-label="Close" (click)="updateScheduleModal.hide()">
+            <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
+          </button>
+        </div>
+        <div class="modal-body pt-0 pb-5">
+          <div class="px-2 col-12 row m-0 text-center py-5">
+            <div class="col-6">
+              <ngx-select-dropdown (change)="selectStudioName($event)" [config]="StudioDropdownConfig" [multiple]="false" [options]="studioList" >
+              </ngx-select-dropdown>
+            </div>
+            <div class="col-6">
+              <input type="date" class="mx-3 col-12" [(ngModel)]="createData.date">
+            </div>
+            <div class="text-center p-3">
+              <label>How many Time Slots are you looking for?</label><br>
+              <button>-</button>&nbsp;&nbsp;{{timeSlotAmounts.length}}&nbsp;&nbsp;<button (click)="addTImeSlot()">+</button>
+              <button class="ml-5" (click)="timeSlotsBooked()">Go</button>
+            </div>
+            <div *ngIf="showTime" class="col-12 p-0">
+              <div class="py-3 col-6" *ngFor="let timeSlotAmount of timeSlotAmounts; let i = index">
+                <ngx-select-dropdown (change)="selectStartTime($event, i)" [config]="SelectStartTimeConfig" [multiple]="false" [options]="startTime" >
+                </ngx-select-dropdown><br>
+                <ngx-select-dropdown (change)="selectEndTime($event, i)" [config]="SelectEndTimeConfig" [multiple]="false" [options]="endTime" >
+                </ngx-select-dropdown><br>
+              </div>
+            </div>
+            <div class="pt-4 col-12 text-center">
+              <button (click)="updateSubmit()">Submit</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- End of Modal -->
+  <!-- End of Modal -->
 </div>

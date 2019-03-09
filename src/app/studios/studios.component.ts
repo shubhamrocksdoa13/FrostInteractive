@@ -27,14 +27,22 @@ export class StudiosComponent implements OnInit {
 	},{
 		name:'Sample Six'
 	}];
+	timeSlotAmounts = [];
 	StudioDropdownConfig = {
 		placeholder: 'Select Studio Name'
 	};
+	SelectStartTimeConfig = {
+		placeholder: 'Select Start Time'
+	}
+	SelectEndTimeConfig = {
+		placeholder: 'Select End Time'
+	}
 	searchData = {
 		"studioName":this.studios,
 		"localDate":''
 	};
-	createData = [{
+	showTime = false;
+	createData = {
 		"date":'',
 		"studioName":'',
 		"studioScheduleSlotList":
@@ -44,14 +52,28 @@ export class StudiosComponent implements OnInit {
 			"faculty":"vdsghGFVS",
 			"assignerName":"GDVBS"
 		}]
-	}];
+	};
+// 	testData= {
+// "date":"2019-01-28",
+// "studioName":"Studio-1",
+// "studioScheduleSlotList":[
+// {
+// "startTime":"00:00:00",
+// "endTime":"00:00:00",
+// "faculty":"vdsghGFVS",
+// "assignerName":"GDVBS"
+// }
+// ]
+// };
 	updateData = [];
 	studioBooked = {
 		startTime: '',
 		endTime: ''
-	}
+	};
 	studioName: string;
-	studioList = ['Studio-1','Studio-2','Studio-3','Studio-4','Studio-5','Studio-6']
+	studioList = ['Studio-1','Studio-2','Studio-3','Studio-4','Studio-5','Studio-6'];
+	startTime = ['01:00:00', '02:00:00', '03:00:00', '04:00:00', '05:00:00', '06:00:00', '07:00:00'];
+	endTime = ['02:00:00', '03:00:00', '04:00:00', '05:00:00', '06:00:00', '07:00:00', '08:00:00'];
 
 	constructor(
 		private studioService: StudioService
@@ -62,8 +84,27 @@ export class StudiosComponent implements OnInit {
 		
 	}
 	selectStudioName(event) {
-              this.studioName = event.value;
-            }            
+		this.studioName = event.value;
+	}
+	selectStartTime(event, i) {
+		this.createData.studioScheduleSlotList.push({
+			"startTime":'',
+			"endTime":'',
+			"faculty":"vdsghGFVS",
+			"assignerName":"GDVBS"
+		});
+		this.createData.studioScheduleSlotList[i].startTime = event.value;
+
+	}           
+	selectEndTime(event, i) {
+		this.createData.studioScheduleSlotList[i].endTime = event.value;
+	} 
+	showTimeSlots(){
+		this.showTime = true;
+	}
+	selectAmountTimeSlots(){
+
+	}
 	searchModalShow(event: Event) {
 		event.preventDefault();
 		this.studioSearchModal.show();
@@ -81,23 +122,32 @@ export class StudiosComponent implements OnInit {
 			}
 		});
 	}
+	addTImeSlot(){
+		this.timeSlotAmounts.push(1);
+		console.log(this.timeSlotAmounts);
+		
+	}
+	timeSlotsBooked(){
+		this.showTime = true;
+	}
 	createScheduleShow(){
 		event.preventDefault();
 		this.makeScheduleModal.show();
 	}
 	createSubmit(){ 
-		this.createData[0].studioName = this.studioName;
+		this.createData.studioName = this.studioName;
 		console.log(this.createData);
+		// console.log(this.testData);
+		// let s =JSON.parse(JSON.stringify(this.testData)); 
+		// console.log(s);
+		
 		this.studioService.createSschedule(this.createData).subscribe(res => {
 			console.log(res);
-			if(res) {
-				
-			}
 		});
 	}
 	updateSubmit(){
-		this.updateData = this.createData;
-		this.updateData[0].studioName = this.studioName;
+		this.createData.studioName = this.studioName;
+		// this.updateData.studioName = this.studioName;
 		console.log(this.createData);
 		this.studioService.updateSschedule(this.createData).subscribe(res => {
 			console.log(res);
